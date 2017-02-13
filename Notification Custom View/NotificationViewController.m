@@ -17,45 +17,63 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    NotificationView *notificationView = [[NotificationView alloc]init];
+/*
+    NotificationView *notificationView = [[NotificationView alloc]initWithFrame:CGRectMake(0, -723, self.view.bounds.size.width, self.view.bounds.size.height)];
     [self.view addSubview:notificationView];
     
     notificationView.userInteractionEnabled = YES;
 
 
-    UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeDown:)];
-    swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp:)];
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+ 
+    [notificationView addGestureRecognizer: swipeUp];
+*/
     
-    UISwipeGestureRecognizer *swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeUp:)];
-    swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    self.notificationView  = [[NotificationView alloc] initWithFrame:CGRectMake(0,-self.view.frame.size.height, self.view.frame.size.width,self.view.frame.size.height)];
     
-    [self.view addGestureRecognizer:swipeDownGestureRecognizer];
-    [notificationView addGestureRecognizer:swipeUpGestureRecognizer];
+    self.notificationView.backgroundColor = [UIColor redColor];
+    [self.view addSubview: self.notificationView];
+ 
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown:)];
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     
+    [self.view addGestureRecognizer: swipeDown];;
+    
+    
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp:)];
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+    
+    [self.view addGestureRecognizer:swipeUp];
     
     
 }
-
-
+/*
 -(void) swipeUp: (UISwipeGestureRecognizer *) recognizer{
     
     UIView *notificationView = recognizer.view;
     
     [UIView animateWithDuration:2.0 animations:^{
-        notificationView.frame = CGRectMake(0, 0, 414, 723);
+        notificationView.frame = CGRectMake(0, -723, 414, 723);
     }];
     
 }
 
+*/
 
--(void) swipeDown: (UISwipeGestureRecognizer *) recognizer{
-    
-    UIView *notificationView = recognizer.view;
 
-    [UIView animateWithDuration:2.0 animations:^{
-        notificationView.frame = CGRectMake(0, 723, 414, 723);
+
+
+- (void) swipeDown:(UIGestureRecognizer *)recognizer {
+    [UIView animateWithDuration: 1.0 animations:^{
+        self.notificationView.center=self.view.center;
+    }];
+}
+
+- (void) swipeUp:(UIGestureRecognizer * )recognizer {
+    [UIView animateWithDuration: 1.0 animations:^{
+        self.notificationView.frame = CGRectMake(0,-self.view.frame.size.height, self.view.frame.size.width,self.view.frame.size.height);
+        
     }];
     
 }

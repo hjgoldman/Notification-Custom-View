@@ -9,23 +9,37 @@
 #import "NotificationView.h"
 
 @implementation NotificationView
-
+/*
 -(instancetype) initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
     
     
-
-    self.notificationView = [[UIView alloc]initWithFrame:CGRectMake(0, -723, 414, 723)];
-    self.notificationView.backgroundColor = [UIColor redColor];
+    UIView *notificationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 414, 723)];
+    notificationView.backgroundColor = [UIColor greenColor];
     
-    [self addSubview:self.notificationView];
+    [self addSubview:notificationView];
+    
+    UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUp:)];
+    swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+    
+    [notificationView addGestureRecognizer: swipeUp];
+
 
     return self;
   
 }
 
-
+-(void) swipeUp: (UISwipeGestureRecognizer *) recognizer{
+    
+    UIView *notificationView = recognizer.view;
+    
+    [UIView animateWithDuration:2.0 animations:^{
+        notificationView.frame = CGRectMake(0, -723, 414, 723);
+    }];
+    
+}
+*/
 
 
 

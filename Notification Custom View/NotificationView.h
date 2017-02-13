@@ -10,6 +10,5 @@
 
 @interface NotificationView : UIView
 
-@property (nonatomic,strong) UIView *notificationView;
 
 @end

@@ -11,4 +11,6 @@
 
 @interface NotificationViewController : UIViewController
 
+@property (nonatomic,strong) NotificationView *notificationView;
+
 @end
